@@ -4,20 +4,28 @@ const maxlife = 2;
 let myscore =  document.querySelector("#scoreboard");
 let count =0;
 let livehearts= maxlife;
+let scoreboard =document.querySelector("display_board")
 /////////////////////////////////////////////////////////
 
 
 const displayhearts =(livehearts)=>{
 
-    if(livehearts ==0){
-        document.getElementById('heart1').style.visibility='hidden';
-        document.getElementById('heart2').style.visibility='hidden';
-    }else if(livehearts==1){
+    
+
+
+     if(livehearts ==0){
         document.getElementById('heart1').style.visibility='visible';
         document.getElementById('heart2').style.visibility='hidden';
+        document.getElementById('heart3').style.visibility='hidden';
+    }else if(livehearts==1){
+        document.getElementById('heart1').style.visibility='visible';
+        
+        document.getElementById('heart2').style.visibility='visible';
+        document.getElementById('heart3').style.visibility='hidden';
     }else if(livehearts==2){
         document.getElementById('heart1').style.visibility='visible';
         document.getElementById('heart2').style.visibility='visible';
+        document.getElementById('heart3').style.visibility='visible';
     }
 
 }
@@ -125,8 +133,12 @@ const playgame=  (userchoice)=>{
             msg.style.backgroundColor="red";
             livehearts--;
             if(livehearts == -1){
-        count=0;
-        livehearts=maxlife;
+
+                scoreboard.textContent= `Your Final Score : ${count}`
+        
+        
+       
+
     }
         }
     }
@@ -136,7 +148,12 @@ const playgame=  (userchoice)=>{
     ///////////////////////////////////////////////
     console.log("your hearts is ",livehearts);
   scoreupdate(count,livehearts);
-/////////////////////////////////////////////
+/////////////////////////////////////////////(
+if(livehearts==-1){
+    livehearts=maxlife;
+    count=0;
+
+}
 
 displayhearts(livehearts);
 
@@ -145,7 +162,14 @@ displayhearts(livehearts);
 };
 
 const scoreupdate=(count,livehearts)=>{
-      if(count==0){
+
+    if(livehearts==-1){
+         myscore.textContent = `Your Final Score : ${count}`;
+
+        
+    }
+
+    else if(count==0){
         myscore.style.backgroundColor="aquamarine";
         myscore.textContent = `Your score : ${count}`;
 
